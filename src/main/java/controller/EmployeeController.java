@@ -28,11 +28,11 @@ public class EmployeeController {
 		// set all employees data as "listEmployees"
 		model.addAttribute("listEmployees", employeeService.getAllEmpployees()); // we use this attribute "listEmployee" to perform server-side rendering of the HTML with using Thymeleaf.
 		
-		return "index"; // shows the index.html template
+		return "new_employee"; // shows the index.html template
 	}
 	
 	// show NewEmployeeForm
-	@GetMapping("/showNewEmployeeForm")
+	@GetMapping("/addEmp")
 	// this methode will be executed when user sends GET Reauests to "/NewEmloyeeForem"
 	// "https://localhost:8080/NewEmployeeForm"
 	public String showNewEmployeeForm(Model model) {
@@ -41,7 +41,7 @@ public class EmployeeController {
 		// we use this attribute "employee" to perform server-side rendering of the html with using Thymeleaf 
 		model.addAttribute("employee", employee); // set employee object as "employee"
 	
-		return "addEmployee"; // shows the addEmployee.html template
+		return "redirect:/new_employee"; // shows the addEmployee.html template
 	}
 	
 	// add an employee
@@ -56,7 +56,7 @@ public class EmployeeController {
 	
 	@GetMapping("/showUpdateForm/{id}")
 		// "https://localhost:8080/Update/{ employee's id}"
-	public String showUpdateForm(@PathVariable Long id, Model model) {
+	public String showUpdateForm(@PathVariable(value = "id") long id, Model model) {
 			// @PathVariable binds the {id} which the path of GET request contains into the id parameter of showUpdateForm() method
 		Employee employee = employeeService.getEmployeeById(id);
 		
@@ -67,7 +67,7 @@ public class EmployeeController {
 	
 	@GetMapping("/delete/{id}")
 	// "https://localhost:8080/delete/{employee's id}"
-	public String deleteEmployeeById(@PathVariable Long id, Model model) {
+	public String deleteEmployeeById(@PathVariable(value = "id") long id, Model model) {
 		employeeService.deleteEmployeeById(id);
 		
 		return "redirect:/"; // after deleting the employee data from the database, redirect to "/"

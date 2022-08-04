@@ -1,21 +1,31 @@
 package domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "employees")
+
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private long id;
+	
+	@Column(name = "firstname") 
 	private String firstName;
+	@Column(name = "lastname")  
 	private String lastName;
+	@Column(name = "email")  
 	private String email;
+	@Column(name = "adresse")  
 	private String adresse;
+	@Column(name = "contact")  
 	private String contact;
+	
 	
 	public Employee() {
 		
