@@ -44,7 +44,7 @@
 					<td th:text="${employee.contact}"></td>
 					<td>
 						<!-- The link which sends GET request to "/showFormForUpdate/{id}" (id is employee.id) -->
-						<a th:href="@{/Update/{id}(id=${employee.id})}"
+						<a th:href="@{/updateForm/{id}(id=${employee.id})}"
 							class="waves-effect waves-light btn">Update</a>
 					</td>
 					<td>
